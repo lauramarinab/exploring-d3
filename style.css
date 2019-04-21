@@ -25,3 +25,20 @@ h1 {
 .subtitle {
   font-size: 13px;
 }
+
+text {
+  font-family: "Courier New", Courier, monospace;
+}
+
+text.textA {
+  font-weight: bold;
+}
+text.textB {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 11px;
+}
+text.textC {
+  letter-spacing: 17px;
+  font-weight: bold;
+}

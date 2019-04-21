@@ -2,6 +2,7 @@ const divRectSvg = document.getElementById("rectSvg");
 const divCircleSvg = document.getElementById("circleSvg");
 const divEllipseSvg = document.getElementById("ellipseSvg");
 const divLinesSvg = document.getElementById("linesSvg");
+const divTextSvg = document.getElementById("textSvg");
 
 const dataArray = [28, 35, 55, 24, 13, 65];
 
@@ -107,3 +108,43 @@ linesSvg
   .attr("y2", (d, i) => 30 + i * 20)
   .style("stroke", "#703121") // style win to .attr
   .style("stroke-width", 4);
+
+// Text SVG
+const textSvg = d3
+  .select(divTextSvg)
+  .append("svg")
+  .attr("height", () => {
+    return Math.max(...dataArray) + 100;
+  })
+  .attr("width", "100%");
+
+textSvg
+  .append("text")
+  .attr("class", "textA")
+  .attr("y", () => Math.max(...dataArray))
+  .attr("font-size", 30)
+  .attr("stroke", "#ED4057")
+  .attr("stroke-width", "1")
+  .attr("fill", "none")
+  .attr("font-family", "Verdana")
+  .text("trying");
+
+textSvg
+  .append("text")
+  .attr("class", "textB")
+  .attr("y", () => Math.max(...dataArray) + 32)
+  .attr("fill", "#C20033")
+  .attr("font-size", 30)
+  .attr("font-family", "Verdana")
+  .text("text");
+
+textSvg
+  .append("text")
+  .attr("class", "textC")
+  .attr("y", () => Math.max(...dataArray) + 60)
+  .attr("fill", "#821B36")
+  .attr("stroke", "#821B36")
+  .attr("stroke-width", 1)
+  .attr("font-size", 40)
+  .attr("font-family", "Verdana")
+  .text("svg");
