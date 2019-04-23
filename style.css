@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   padding: 8px 10px;
+  box-sizing: border-box;
 }
 
 * {
@@ -15,6 +16,12 @@ h1 {
   box-sizing: border-box;
   font-size: 20px;
   font-weight: 200;
+}
+
+button {
+  font-size: 12px;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .sectionSvg {
@@ -41,4 +48,36 @@ text.textB {
 text.textC {
   letter-spacing: 17px;
   font-weight: bold;
+}
+
+tspan {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#pathLineSvg {
+  height: 220px;
+}
+
+#pathAreaSvg {
+  height: calc(100% - 50px);
+}
+
+#linechart {
+  height: calc(100% - 60px);
+}
+
+.xAxis g text {
+  transform: rotate(-90deg);
+  text-anchor: end;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  color: white;
+  pointer-events: none;
 }

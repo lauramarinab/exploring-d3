@@ -3,6 +3,7 @@ const divCircleSvg = document.getElementById("circleSvg");
 const divEllipseSvg = document.getElementById("ellipseSvg");
 const divLinesSvg = document.getElementById("linesSvg");
 const divTextSvg = document.getElementById("textSvg");
+const divTextArraySvg = document.getElementById("textArraySvg");
 
 const dataArray = [28, 35, 55, 24, 13, 65];
 
@@ -121,30 +122,57 @@ const textSvg = d3
 textSvg
   .append("text")
   .attr("class", "textA")
+  .attr("x", 100)
   .attr("y", () => Math.max(...dataArray))
   .attr("font-size", 30)
   .attr("stroke", "#ED4057")
   .attr("stroke-width", "1")
   .attr("fill", "none")
-  .attr("font-family", "Verdana")
+  .attr("text-anchor", "start")
+  .attr("dominant-baseline", "start")
   .text("trying");
 
 textSvg
   .append("text")
   .attr("class", "textB")
+  .attr("x", 100)
   .attr("y", () => Math.max(...dataArray) + 32)
   .attr("fill", "#C20033")
+  .attr("text-anchor", "middle")
   .attr("font-size", 30)
-  .attr("font-family", "Verdana")
   .text("text");
 
 textSvg
   .append("text")
   .attr("class", "textC")
+  .attr("x", 100)
   .attr("y", () => Math.max(...dataArray) + 60)
   .attr("fill", "#821B36")
   .attr("stroke", "#821B36")
   .attr("stroke-width", 1)
+  .attr("text-anchor", "start")
   .attr("font-size", 40)
-  .attr("font-family", "Verdana")
   .text("svg");
+
+const textArray = ["text", "array", "svg"];
+// Text Array SVG
+const textArraySvg = d3
+  .select(divTextArraySvg)
+  .append("svg")
+  .attr("height", () => {
+    return Math.max(...dataArray) + 100;
+  })
+  .attr("width", "100%");
+
+textArraySvg
+  .append("text")
+  .selectAll("tspan")
+  .data(textArray)
+  .enter()
+  .append("tspan")
+  .attr("x", 30)
+  .attr("y", (d, i) => 50 + i * 50)
+  .attr("fill", "#ED4057")
+  .attr("text-anchor", "start")
+  .attr("font-size", 40)
+  .text(d => d);
