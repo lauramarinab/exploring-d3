@@ -51,11 +51,24 @@ const divTooltip = d3
   .attr("class", "tooltip")
   .style("opacity", 0);
 
+const initialArea = d3
+  .area()
+  .x((d, i) => i * 70)
+  .y0(d => yLine(d.valueY))
+  .y1(h)
+  .curve(d3.curveNatural);
+
 const area = d3
   .area()
   .x((d, i) => i * 70)
   .y0(h)
   .y1(d => yLine(d.valueY))
+  .curve(d3.curveNatural);
+
+const initialiLine = d3
+  .line()
+  .x((d, i) => i * 70)
+  .y(h)
   .curve(d3.curveNatural);
 
 const linePath = d3
@@ -67,14 +80,20 @@ const linePath = d3
 linechartGrp
   .append("path")
   .attr("d", area(data))
-  .attr("fill", "#b8c79860");
+  .attr("fill", "#b8c79860")
+  .transition()
+  .duration(2000)
+  .attr("d", initialArea(data));
 
 linechartGrp
   .append("path")
-  .attr("d", linePath(data))
+  .attr("d", initialiLine(data))
   .attr("fill", "none")
   .attr("stroke", "#97A676")
-  .attr("stroke-width", 3);
+  .attr("stroke-width", 3)
+  .transition()
+  .duration(2000)
+  .attr("d", linePath(data));
 
 circleGrp2
   .selectAll("circle")
@@ -82,15 +101,16 @@ circleGrp2
   .enter()
   .append("circle")
   .attr("cx", (d, i) => i * 70)
-  .attr("cy", d => yLine(d.valueY))
+  .attr("cy", h)
   .attr("r", 4)
   .attr("fill", (d, i) => color(i))
   .on("mouseover", (d, i) => {
     divTooltip
+      .style("opacity", 0)
+      .style("background", (d, i) => color(i))
       .transition()
       .duration(200)
-      .style("opacity", 1)
-      .style("background", (d, i) => color(i));
+      .style("opacity", 1);
     divTooltip
       .html("value:" + "<br/>" + d.valueY)
       .style("left", d3.event.pageX + 10 + "px")
@@ -101,7 +121,10 @@ circleGrp2
       .transition()
       .duration(500)
       .style("opacity", 0);
-  });
+  })
+  .transition()
+  .duration(2000)
+  .attr("cy", d => yLine(d.valueY));
 
 linechartGrp
   .append("g")

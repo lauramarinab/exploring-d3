@@ -23,11 +23,11 @@ rectSvg
   .data(dataArray)
   .enter()
   .append("rect")
-  .attr("height", (d, i) => d * 2)
   .attr("width", 80)
   .attr("x", (d, i) => 90 * i)
   .attr("y", (d, i) => 200 - d * 2)
-  .attr("fill", "#97A676");
+  .attr("fill", "#97A676")
+  .attr("height", (d, i) => d * 2);
 
 // Circle SVG
 const circleSvg = d3
