@@ -66,6 +66,10 @@ tspan {
   height: calc(100% - 60px);
 }
 
+#networkchart {
+  height: calc(100% - 60px);
+}
+
 .xAxis g text {
   transform: rotate(-90deg);
   text-anchor: end;
